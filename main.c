@@ -53,6 +53,41 @@ void					lst_push_back(t_list **lst, void *data)
 	lstwalker->next = create_elem(data);
 }
 
+void					swap_list(t_list *lst1, t_list *lst2)
+{
+	void				*tmp;
+
+	tmp = lst1->data;
+	lst1->data = lst2->data;
+	lst2->data = tmp;
+}
+
+void					sort_list(t_list **lst, int (*cmp)())
+{
+	t_list				*lstwalker;
+	t_list				*root;
+
+	lstwalker = *lst;
+	while (lstwalker != NULL)
+	{
+		root = *lst;
+		while (root != NULL)
+		{
+			if (root->next != NULL)
+			{
+				if (cmp(root->data, root->next->data) > 0)
+					swap_list(root, root->next);
+			}
+			else
+				break ;
+			root = root->next;
+		}
+		if (lstwalker->next == NULL)
+			break ;
+		lstwalker = lstwalker->next;
+	}
+}
+
 t_dir					*store_dir(char *path)
 {
 	DIR				*dir_fd;
@@ -71,41 +106,6 @@ t_dir					*store_dir(char *path)
 	}
 	closedir(dir_fd);
 	return (dir);
-}
-
-void					swap_list(t_list *lst1, t_list *lst2)
-{
-	void				*tmp;
-
-	tmp = lst1->data;
-	lst1->data = lst2->data;
-	lst2->data = tmp;
-}
-
-void					sort_list(t_list **lst)
-{
-	t_list				*lstwalker;
-	t_list				*root;
-
-	lstwalker = *lst;
-	while (lstwalker != NULL)
-	{
-		root = *lst;
-		while (root != NULL)
-		{
-			if (root->next != NULL)
-			{
-				if (strcmp(root->data, root->next->data) > 0)
-					swap_list(root, root->next);
-			}
-			else
-				break ;
-			root = root->next;
-		}
-		if (lstwalker->next == NULL)
-			break ;
-		lstwalker = lstwalker->next;
-	}
 }
 
 void					show_dir(t_dir *dir)
@@ -138,7 +138,7 @@ int					main(int argc, char **argv)
 		perror("");
 		return (-1);
 	}
-	sort_list(&dir->files);
+	sort_list(&dir->files, strcmp);
 	show_dir(dir);
 	return (0);
 }
