@@ -20,36 +20,35 @@ PATH_OBJ =	 obj
 PATH_SRC = 	srcs
 
 SRC =		\
+			lst_create_elem.c \
+			lst_push_back.c \
+			lst_sort.c \
+			ft_putstr.c \
+			ft_strdup.c \
+			ft_strcmp.c \
 			main.c \
-
-LIBPATH = libft/
-LIBINC = $(LIBPATH)includes
+			store_dir.c \
+			show.c \
 
 OBJ = $(patsubst %.c, $(PATH_OBJ)/%.o, $(SRC))
 
-all: libft $(NAME)
+all: $(NAME)
 
 $(NAME): namemes $(OBJ)
-	@ $(CC) $(OBJ) $(CFLAGS) $(LFLAGS) -I$(LIBINC) -I$(PATH_INC) \
-	$(LIBPATH)libft.a -o $(NAME)
+	@ $(CC) $(OBJ) $(CFLAGS) $(LFLAGS) -I $(PATH_INC) -o $(NAME)
 	@ echo " \033[4m\033[95md\033[93mo\033[32mn\033[96me \033[91m!\033[0m"
 
 $(PATH_OBJ)/%.o: $(addprefix $(PATH_SRC)/, %.c)
 	@ echo -n .
 	@ mkdir -p $(PATH_OBJ)
-	@ $(CC) -c $^ -I$(PATH_INC) -I$(LIBINC) $(CFLAGS) -o $@
-
-libft:
-	@ make -C $(LIBPATH)
+	@ $(CC) -c $^ -I$(PATH_INC) $(CFLAGS) -o $@
 
 clean:
-	@ make clean -C $(LIBPATH)
 	@ rm -rf $(PATH_OBJ)
 	@ echo "Cleaning $(NAME) \
 		\033[4m\033[95md\033[93mo\033[32mn\033[96me \033[91m!\033[0m"
 
 fclean: clean
-	@ make fclean -C $(LIBPATH)
 	@ rm -rf $(NAME)
 	@ echo "Fcleaning $(NAME) \
 		\033[4m\033[95md\033[93mo\033[32mn\033[96me \033[91m!\033[0m"
@@ -59,4 +58,4 @@ namemes :
 
 re: fclean all
 
-.PHONY: clean fclean re libft
+.PHONY: clean fclean re
