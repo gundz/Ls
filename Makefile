@@ -13,7 +13,7 @@
 NAME =		ls
 
 CC =  		clang
-CFLAGS = 	
+CFLAGS = 	-g
 
 PATH_INC = 	includes/
 PATH_OBJ =	 obj
@@ -30,6 +30,7 @@ SRC =		\
 			main.c \
 			store_dir.c \
 			show.c \
+			error.c \
 
 OBJ = $(patsubst %.c, $(PATH_OBJ)/%.o, $(SRC))
 
