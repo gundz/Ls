@@ -15,5 +15,6 @@ void						lst_sort(t_list **lst, int (*cmp)(), const int rev);
 void						ft_putstr(const char *const str);
 char						*ft_strdup(const char *const str);
 int							ft_strcmp(const char *s1, const char *s2);
+char						*ft_strcat(const char *const str, const char *const str2);
 
 #endif

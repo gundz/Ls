@@ -13,7 +13,7 @@
 NAME =		ls
 
 CC =  		clang
-CFLAGS = 	-Wall -Wextra -Werror
+CFLAGS = 	
 
 PATH_INC = 	includes/
 PATH_OBJ =	 obj
@@ -26,6 +26,7 @@ SRC =		\
 			ft_putstr.c \
 			ft_strdup.c \
 			ft_strcmp.c \
+			ft_strcat.c \
 			main.c \
 			store_dir.c \
 			show.c \
