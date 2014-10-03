@@ -11,6 +11,7 @@ typedef struct				s_list
 t_list						*lst_create_elem(void *data);
 void						lst_push_back(t_list **lst, void *data);
 void						lst_sort(t_list **lst, int (*cmp)(), const int rev);
+unsigned int				lst_count(t_list *lst);
 
 void						ft_putstr(const char *const str);
 char						*ft_strdup(const char *const str);

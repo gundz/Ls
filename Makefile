@@ -23,6 +23,7 @@ SRC =		\
 			lst_create_elem.c \
 			lst_push_back.c \
 			lst_sort.c \
+			lst_count.c \
 			ft_putstr.c \
 			ft_strdup.c \
 			ft_strcmp.c \
