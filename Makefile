@@ -31,6 +31,7 @@ SRC =		\
 			sort.c \
 			dir.c \
 			store_dir.c \
+			options.c \
 			show.c \
 			error.c \
 

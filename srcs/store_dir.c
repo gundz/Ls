@@ -3,7 +3,16 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-t_dir					*store_files(char **argv)
+int						all_option(char *str, int on)
+{
+	if (on == 1)
+		return (1);
+	if (ft_strcmp(str, "..") == 0 || str[0] == '.')
+		return (0);
+	return (1);
+}
+
+t_dir					*store_files(char **argv, int all)
 {
 	t_dir				*dir;
 	int					i;
@@ -16,7 +25,7 @@ t_dir					*store_files(char **argv)
 		{
 			if (is_dir(argv[i]) == 0)
 			{
-				if (ft_strcmp(argv[i], "..") != 0 && argv[i][0] != '.')
+				if (all_option(argv[i], all) == 1)
 					lst_push_back(&dir->files, ft_strdup(argv[i]));
 			}
 		}
@@ -25,7 +34,7 @@ t_dir					*store_files(char **argv)
 	return (dir);
 }
 
-t_dir					*store_dir_content(char *path)
+t_dir					*store_dir_content(char *path, int all)
 {
 	DIR					*dir_fd;
 	struct dirent		*file;
@@ -39,7 +48,7 @@ t_dir					*store_dir_content(char *path)
 	}
 	while ((file = readdir(dir_fd)) != NULL)
 	{
-		if (ft_strcmp(file->d_name, "..") != 0 && file->d_name[0] != '.')
+		if (all_option(file->d_name, all) == 1)
 			lst_push_back(&dir->files, ft_strdup(file->d_name));
 	}
 	closedir(dir_fd);
