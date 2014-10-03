@@ -13,7 +13,7 @@
 NAME =		ls
 
 CC =  		clang
-CFLAGS = 	-g
+CFLAGS = 	-Wall -Werror -Wextra -g
 
 PATH_INC = 	includes/
 PATH_OBJ =	 obj
@@ -28,6 +28,8 @@ SRC =		\
 			ft_strcmp.c \
 			ft_strcat.c \
 			main.c \
+			sort.c \
+			dir.c \
 			store_dir.c \
 			show.c \
 			error.c \
