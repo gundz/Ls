@@ -15,7 +15,7 @@ t_dir					*create_dir(char *path)
 	return (dir);
 }
 
-int						is_dir(char *path)
+int						is_dir(const char *path)
 {
 	struct stat			stat_buf;
 

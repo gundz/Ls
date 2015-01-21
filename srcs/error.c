@@ -2,7 +2,7 @@
 #include <ls.h>
 #include <stdio.h>
 
-int					show_error(char *str, int n)
+int					show_error(const char *str, const int n)
 {
 	ft_putstr(PROG_NAME);
 	ft_putstr(": ");

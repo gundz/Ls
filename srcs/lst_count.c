@@ -10,10 +10,10 @@ unsigned int					lst_count(t_list *lst)
 	lstwalker = lst;
 	while (lstwalker != NULL)
 	{
+		++ret;
 		if (lstwalker->next == NULL)
 			break ;
 		lstwalker = lstwalker->next;
-		++ret;
 	}
 	return (ret);
 }

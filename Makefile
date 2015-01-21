@@ -25,7 +25,9 @@ SRC =		\
 			lst_sort.c \
 			lst_count.c \
 			ft_putstr.c \
-			ft_strdup.c \
+                        ft_memcpy.c \
+			ft_cpy.c \
+                        ft_strdup.c \
 			ft_strcmp.c \
 			ft_strcat.c \
 			main.c \

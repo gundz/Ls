@@ -3,42 +3,39 @@
 #include <stddef.h>
 
 #include <stdio.h>
-void					show_dir2(t_list *lst)
+
+void                                            showDir(const t_dir *dir, const int show)
 {
-	t_list				*lstwalker;
+    t_list                                      *lstWalker;
+    struct dirent                               *file;
 
-	lstwalker = lst;
-	while (lstwalker != NULL)
-	{
-		ft_putstr(lstwalker->data);
-		ft_putstr("\n");
-		if (lstwalker->next == NULL)
-			break ;
-		lstwalker = lstwalker->next;
-	}
-
+    lstWalker = dir->files;
+    while (lstWalker != NULL)
+    {
+        file = lstWalker->data;
+        if (!(file->d_name[0] == '.') || show == 1)
+            printf("%s\n", file->d_name);
+        if (lstWalker->next == NULL)
+            break ;
+        lstWalker = lstWalker->next;
+    }
 }
 
-void					show_dir(t_list *lst)
+void                                            showDirLst(t_list *lst, const int show)
 {
-	t_list				*lstwalker;
-	unsigned int		show_d_name;
-	t_dir				*tmp;
-
-	show_d_name = lst_count(lst);
-	lstwalker = lst;
-	while (lstwalker != NULL)
-	{
-		tmp = lstwalker->data;
-		if (show_d_name > 0 && tmp->path[0] != '\0')
-		{
-			ft_putstr(tmp->path);
-			ft_putstr(" :\n");
-		}
-		show_dir2(tmp->files);
-		if (lstwalker->next == NULL)
-			break ;
-		lstwalker = lstwalker->next;
-		ft_putstr("\n");
-	}
+    t_dir                                       *dir;
+    unsigned int                                size;
+    
+    size = lst_count(lst);
+    while (lst != NULL)
+    {
+        dir = lst->data;
+        if (size > 1)
+            printf("%s:\n", dir->path);
+        showDir(lst->data, show);
+        if (lst->next == NULL)
+            break ;
+        printf("\n");
+        lst = lst->next;
+    }
 }
