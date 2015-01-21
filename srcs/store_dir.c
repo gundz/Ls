@@ -30,20 +30,21 @@ int						store_dirs_recursive(t_dir *dir, t_list **rep_list)
     t_dir                                       *dir_tmp;
     struct dirent                               *file;
     t_list                                      *lstWalker;
+    char                                        *tmp;
 
     lstWalker = dir->files;
     dir_tmp = NULL;
     while (lstWalker != NULL)
     {
         file = lstWalker->data;
-        char                                *tmp = ft_strcat(dir->path, "/");
-        tmp = ft_strcat(tmp, file->d_name);
+        tmp = ft_strijoin(3, dir->path, "/", file->d_name);
         if (is_dir(tmp) == 1 && ft_strcmp(file->d_name, "..") != 0 && ft_strcmp(file->d_name, ".") != 0)
         {
             store_dir_content(tmp, &dir_tmp);
             lst_push_back(rep_list, dir_tmp);
             store_dirs_recursive(dir_tmp, rep_list);
         }
+        free(tmp);
         if (lstWalker->next == NULL)
             break ;
         lstWalker = lstWalker->next;

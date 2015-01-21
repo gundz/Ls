@@ -29,8 +29,9 @@ SRC =		\
 			ft_cpy.c \
                         ft_strdup.c \
 			ft_strcmp.c \
-			ft_strcat.c \
-			main.c \
+                        ft_strijoin.c \
+			ft_strlen.c \
+                        main.c \
 			sort.c \
 			dir.c \
 			store_dir.c \

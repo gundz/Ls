@@ -3,6 +3,7 @@
 # define	LIBFT_H
 
 # include <stddef.h>
+# include <stdarg.h>
 
 typedef struct				s_list
 {
@@ -19,7 +20,8 @@ void						ft_putstr(const char *const str);
 void                                            *ft_memcpy(void *dest, const void *src, size_t n);
 void                                            *ft_cpy(void *cpy, size_t size);
 char						*ft_strdup(const char *const str);
-int							ft_strcmp(const char *s1, const char *s2);
-char						*ft_strcat(const char *const str, const char *const str2);
+unsigned int                                    ft_strlen(const char *const str);
+int						ft_strcmp(const char *s1, const char *s2);
+char                                            *ft_strijoin(unsigned int n, ...);
 
 #endif
