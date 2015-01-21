@@ -65,7 +65,10 @@ int                                             main(int argc, char **argv)
         while (argv[i] != NULL)
         {
             if (store_dir_content(argv[i], &dir) == 0)
+            {
                 lst_push_back(&lst, dir);
+//                store_dirs_recursive(dir, &lst);
+            }
             i++;
         }
     }
