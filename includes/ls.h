@@ -24,7 +24,6 @@ t_dir					*create_dir(char *path);
 int					is_dir(const char *path);
 
 int					options(const int argc, char  **argv, char tab[]);
-int					get_option(char tab[], char c);
 
 void					showDir(const t_dir *dir, const int show);
 void                                    showDirLst(t_list *lst, const int show);

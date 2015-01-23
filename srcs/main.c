@@ -38,23 +38,9 @@ int					main(int argc, char **argv)
 #include <stdio.h>
 #include <dirent.h>
 
-int                                             main2(void)
-{
-    t_list                                      *lst = NULL;
-    t_dir                                       *dir = NULL;
-
-    if (store_dir_content("testd", &dir) == 0)
-    {
-        lst_push_back(&lst, dir);
-        store_dirs_recursive(dir, &lst);
-    }
-    sort_all(&lst, 0);
-    showDirLst(lst, 0);
-    return (0);
-}
-
 int                                             main(int argc, char **argv)
 {
+    static char                                 option[256] = {0};
     t_dir                                       *dir;
     t_list                                      *lst;
     int                                         i = 1;
@@ -62,12 +48,14 @@ int                                             main(int argc, char **argv)
     lst = NULL;
     if (argc > 1)
     {
+        options(argc, argv, option);
         while (argv[i] != NULL)
         {
             if (store_dir_content(argv[i], &dir) == 0)
             {
                 lst_push_back(&lst, dir);
-//                store_dirs_recursive(dir, &lst);
+                if (option[(size_t)(unsigned char)'R'] == 1)
+                    store_dirs_recursive(dir, &lst);
             }
             i++;
         }
@@ -77,6 +65,6 @@ int                                             main(int argc, char **argv)
         store_dir_content("./", &dir);
         lst_push_back(&lst, dir);
     }
-    sort_all(&lst, 0);
+    sort_all(&lst, option[(size_t)(unsigned char)'a']);
     showDirLst(lst, 0);
 }

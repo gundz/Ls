@@ -9,17 +9,13 @@ int                                             store_dir_content(const char *pa
     struct dirent                               *file;
 
     if ((dir_fd = opendir(path)) == NULL)
-    {
         return (show_error(path, -1));
-    }
     if (!(*dir = (t_dir *)malloc(sizeof(t_dir))))
         return (show_error("", -1));
     (*dir)->files = NULL;
     (*dir)->path = ft_strdup(path);
     while ((file = readdir(dir_fd)) != NULL)
-    {
         lst_push_back(&(*dir)->files, ft_cpy(file, sizeof(struct dirent)));
-    }
     closedir(dir_fd);
     return (0);
 }
